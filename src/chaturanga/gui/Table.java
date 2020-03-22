@@ -3,12 +3,17 @@ package chaturanga.gui;
 import chaturanga.board.Board;
 import chaturanga.board.BoardUtils;
 import chaturanga.board.Move;
+import chaturanga.board.Tile;
 import chaturanga.piece.Piece;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +32,19 @@ public class Table {
     private Tile sourceTile;
     private Tile destinationTile;
     private Piece humanMovedPiece;
+
+    private final static Dimension OUTER_FRAME_DIMENSION = new Dimension(350, 700);
+    public static final int WIDTH = 350;
+    public static final int HEIGHT = 700;
+    private static final Dimension BOARD_PANEL_DIMENSION = new Dimension(0, 0);
+    private static final Dimension TILE_PANEL_DIMENSION = new Dimension(100, 100);
+
+    private static String defaultPieceImagesPath = "src/art/";
+
+    private final Color lightTileColor = Color.decode("#FFFACD");
+    private final Color darkTileColor = Color.decode("#593E1A");
+    private final Color hoverLightTileColor = Color.decode("#b59565");
+    private final Color hoverDarkTileColor = Color.decode("#bfa071");
 
     private class BoardPanel extends JPanel {
         final List<TilePanel> boardTiles;
@@ -136,6 +154,61 @@ public class Table {
 
                 }
             });
+            validate();
+        }
+        public void drawTile(final Board board) {
+            assignTileColor(lightTileColor, darkTileColor);
+            assignTilePieceIcon(board);
+            highlightLegals(board);
+            validate();
+            repaint();
+        }
+
+        private void assignTilePieceIcon(final Board board) {
+            this.removeAll();
+            if (board.getTile(this.tileId).isTileOccupied()) {
+
+                try {
+                    final BufferedImage image = ImageIO.read(new File(defaultPieceImagesPath + board.getTile(this.tileId).getPiece().getPieceAlliance().toString().substring(0, 1) + "" +
+                            board.getTile(this.tileId).getPiece().toString() + ".gif.png"));
+                    add(new JLabel(new ImageIcon(image)));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        private void highlightLegals(final Board board) {
+            if (true) {
+                for (final Move move : pieceLegalMoves(board)) {
+                    if (move.getDestinationCoordinate() == this.tileId) {
+                        try {
+                            assignTileColor(hoverLightTileColor, hoverDarkTileColor);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                for (final Move move : pieceLegalJumpedMoves(board)) {
+                    if (move.getDestinationCoordinate() == this.tileId) {
+                        try {
+                            assignTileColor(hoverLightTileColor, hoverDarkTileColor);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        }
+
+        private void assignTileColor(Color lightTileColor, Color darkTileColor) {
+            if (BoardUtils.EIGTH_RANK[this.tileId] || BoardUtils.SIXTH_RANK[this.tileId] ||
+                    BoardUtils.FOURTH_RANK[this.tileId] || BoardUtils.SECOND_RANK[this.tileId]) {
+                setBackground(this.tileId % 2 == 0 ? lightTileColor : darkTileColor);
+            } else if (BoardUtils.SEVENTH_RANK[this.tileId] || BoardUtils.FIFTH_RANK[this.tileId] ||
+                    BoardUtils.THIRD_RANK[this.tileId] || BoardUtils.FIRST_RANK[this.tileId]) {
+                setBackground(this.tileId % 2 != 0 ? lightTileColor : darkTileColor);
+
+            }
         }
     }
 }

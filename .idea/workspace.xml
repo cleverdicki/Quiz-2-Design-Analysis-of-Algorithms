@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="42a250a1-8e39-4a29-93d2-23565bd09801" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chaturanga/gui/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chaturanga/gui/Table.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +66,7 @@
       <option name="presentableId" value="Default" />
       <updated>1584791269141</updated>
       <workItem from="1584791277722" duration="5299000" />
-      <workItem from="1584890433859" duration="770000" />
+      <workItem from="1584890433859" duration="1632000" />
     </task>
     <servers />
   </component>

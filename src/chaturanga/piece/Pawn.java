@@ -4,7 +4,6 @@ import chaturanga.board.Board;
 import chaturanga.board.BoardUtils;
 import chaturanga.board.Move;
 import com.google.common.collect.ImmutableList;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -15,7 +14,7 @@ public class Pawn extends Piece{
     public static final int[] CANDIDATE_MOVE_COORDINATE = {-5, -4, -3, -1, 1, 3, 4, 5};
 
     public Pawn(final Alliance pieceAlliance, final int piecePosition) {
-        super(piecePosition,pieceAlliance);
+        super(piecePosition,pieceAlliance, cachedHashCode);
     }
     @Override
     public Collection<Move> calculateLegalMoves(Board board) {

@@ -4,6 +4,8 @@
     <list default="true" id="42a250a1-8e39-4a29-93d2-23565bd09801" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/chaturanga/gui/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chaturanga/gui/Table.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chaturanga/piece/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chaturanga/piece/Pawn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chaturanga/piece/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chaturanga/piece/Piece.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +68,7 @@
       <option name="presentableId" value="Default" />
       <updated>1584791269141</updated>
       <workItem from="1584791277722" duration="5299000" />
-      <workItem from="1584890433859" duration="1632000" />
+      <workItem from="1584890433859" duration="2446000" />
     </task>
     <servers />
   </component>
@@ -108,5 +110,9 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="163" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1584793397482" />
+    <state x="766" y="0" key="refactoring.ChangeSignatureDialog" timestamp="1584894882430">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="766" y="0" key="refactoring.ChangeSignatureDialog/0.0.1366.728@0.0.1366.728" timestamp="1584894882430" />
   </component>
 </project>

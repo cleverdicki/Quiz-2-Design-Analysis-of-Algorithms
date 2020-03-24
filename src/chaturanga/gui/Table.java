@@ -20,7 +20,7 @@ import java.util.List;
 import static javax.swing.SwingUtilities.isLeftMouseButton;
 import static javax.swing.SwingUtilities.isRightMouseButton;
 
-public class Table {
+public class Table extends Observable{
     private final JFrame gameFrame;
     private final BoardPanel boardPanel;
     private Board chessBoard;
@@ -45,6 +45,35 @@ public class Table {
     private final Color darkTileColor = Color.decode("#593E1A");
     private final Color hoverLightTileColor = Color.decode("#b59565");
     private final Color hoverDarkTileColor = Color.decode("#bfa071");
+
+    public static int code=2;
+    private Move computerMove;
+    private static final Table INSTANCE = new Table();
+
+    private Table() {
+        code=getCode();
+        System.out.println(code);
+        this.gameFrame = new JFrame("Chaturanga");
+        this.gameFrame.setLayout(new BorderLayout());
+        this.gameFrame.setSize(OUTER_FRAME_DIMENSION);
+        this.gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.chessBoard = Board.createStandardBoard();
+        this.boardPanel = new BoardPanel();
+
+        Sound.playContinuous("src/art/main-game-back-sound.wav");
+        this.gameFrame.add(this.boardPanel, BorderLayout.CENTER);
+        this.gameFrame.setLocationRelativeTo(null);
+        this.gameFrame.setVisible(true);
+        this.gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setPlayerType();
+        this.menu = new Menu(gameFrame);
+        this.addObserver(new TableGameAIWatcher(menu));
+    }
+
+    public static Table get(final int options) {
+        code=options;
+        return INSTANCE;
+    }
 
     private class BoardPanel extends JPanel {
         final List<TilePanel> boardTiles;
@@ -71,6 +100,14 @@ public class Table {
             validate();
             repaint();
         }
+    }
+
+    public static int getCode() {
+        return code;
+    }
+
+    private Board getGameBoard() {
+        return this.chessBoard;
     }
 
     private class TilePanel extends JPanel {

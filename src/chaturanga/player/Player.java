@@ -64,4 +64,18 @@ public abstract class Player {
     public  Collection<Move> getLegalMoves(){
         return  this.legalMoves;
     }
+    public MoveTransition makeMove(final Move move) {
+        //kalau movenya tidak sesuai dengan aturan
+        if (!isMoveLegal(move)) {
+            return new MoveTransition(this.board, move, MoveStatus.ILLEGAL_MOVE);
+        }
+
+        final Board transitionBoard = move.execute();
+        final boolean checkPositionForCheckMate = Player.getAllPosition(this.board, Alliance.BLACK, Alliance.WHITE);
+        if (checkPositionForCheckMate) {
+            return new MoveTransition(this.board, move, MoveStatus.LEAVES_PLAYER_IN_CHECK);
+        }
+        return new MoveTransition(transitionBoard, move, MoveStatus.DONE);
+
+    }
 }

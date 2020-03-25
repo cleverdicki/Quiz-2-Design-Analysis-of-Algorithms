@@ -1,8 +1,11 @@
 package chaturanga.piece;
 
+import chaturanga.Alliance;
 import chaturanga.board.Board;
 import chaturanga.board.BoardUtils;
 import chaturanga.board.Move;
+import chaturanga.board.Move.JumpedMove;
+import chaturanga.board.Tile;
 import com.google.common.collect.ImmutableList;
 
 import java.util.ArrayList;
@@ -10,11 +13,13 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import static chaturanga.piece.Piece.PieceType.*;
+
 public class Pawn extends Piece{
     public static final int[] CANDIDATE_MOVE_COORDINATE = {-5, -4, -3, -1, 1, 3, 4, 5};
 
     public Pawn(final Alliance pieceAlliance, final int piecePosition) {
-        super(piecePosition,pieceAlliance, cachedHashCode);
+        super(PAWN,piecePosition,pieceAlliance);
     }
     @Override
     public Collection<Move> calculateLegalMoves(Board board) {
@@ -26,8 +31,8 @@ public class Pawn extends Piece{
             }
             if (BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate)) {
                 final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
-                if (!candidateDestinationTile.isTileOccupied) {
-                    legalMoves.add(new MajorMove(board, this, candidateDestinationCoordinate));
+                if (!candidateDestinationTile.isTileOccupied()) {
+                    legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
                 }
             }
         }
@@ -38,7 +43,6 @@ public class Pawn extends Piece{
     public Collection<Move> calculateLegalJumpedMoves(Board board, int oldPiecePosition, Map<Integer, Boolean> isVisited) {
         if (!isVisited.containsKey(this.piecePosition))  isVisited.put(this.piecePosition, true);
         final List<Move> jumpedMove = new ArrayList<>();
-        int countJumped = 0;
         for (final int currentCandidateOffset : CANDIDATE_MOVE_COORDINATE) {
             final int blockedPiecePosition = oldPiecePosition + currentCandidateOffset;
 
@@ -89,5 +93,9 @@ public class Pawn extends Piece{
         return BoardUtils.FOURTH_COLUMN[currentPosition] && (candidateOffset == -3 || candidateOffset == 1 || candidateOffset == 5);
     }
 
+    @Override
+    public String toString() {
+        return PAWN.toString();
+    }
 
 }

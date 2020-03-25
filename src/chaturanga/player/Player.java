@@ -15,7 +15,6 @@ public abstract class Player {
     protected final Collections<Move> legalMoves;
 
     public Player(final Board board, final Collection<Move> legalMoves, final Collection<Move> opponentMoves){
-
         this.board=board;
         this.legalMoves = legalMoves;
         this.isInCheck = Player.getAllPosition(this.board, Alliance.BLACK, Alliance.WHITE);
@@ -54,7 +53,7 @@ public abstract class Player {
     }
 
     public boolean isInCheckMate(){
-        return  Player.getAllPosition(this.board, Alliance.BLACK,Alliance.WHITE);
+        return Player.getAllPosition(this.board, Alliance.BLACK,Alliance.WHITE);
     }
 
 
@@ -62,20 +61,18 @@ public abstract class Player {
     public abstract Alliance getAlliance();
     public abstract Player getOpponent();
     public  Collection<Move> getLegalMoves(){
-        return  this.legalMoves;
+        return this.legalMoves;
     }
     public MoveTransition makeMove(final Move move) {
         //kalau movenya tidak sesuai dengan aturan
         if (!isMoveLegal(move)) {
             return new MoveTransition(this.board, move, MoveStatus.ILLEGAL_MOVE);
         }
-
         final Board transitionBoard = move.execute();
         final boolean checkPositionForCheckMate = Player.getAllPosition(this.board, Alliance.BLACK, Alliance.WHITE);
         if (checkPositionForCheckMate) {
             return new MoveTransition(this.board, move, MoveStatus.LEAVES_PLAYER_IN_CHECK);
         }
         return new MoveTransition(transitionBoard, move, MoveStatus.DONE);
-
     }
 }

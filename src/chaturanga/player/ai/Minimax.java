@@ -5,6 +5,7 @@ import chaturanga.board.Move;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Minimax implements MoveStrategy {
     private final BoardEvaluator boardEvaluator;
@@ -50,5 +51,60 @@ public class Minimax implements MoveStrategy {
         bestMove = getRandomMove(bestMoveAI);
         return bestMove;
     }
-    
+
+    private Move getRandomMove(List<Move> bestMoveAI) {
+        Random random = new Random();
+        Move move = bestMoveAI.get(random.nextInt(bestMoveAI.size()));
+        return move;
+    }
+
+    public int min(final Move blackMove,final Move whiteMove, final Board board, final int depth, int alpha, int beta) {
+        if (depth == 0 || isEndGameScenario(board)) {
+            return this.boardEvaluator.evaluate(blackMove,whiteMove,board, depth);
+        }
+        int lowestSeenValue = Integer.MAX_VALUE;
+        for (final Move move : board.currentPlayer().getLegalMoves()) {
+            final MoveTransition moveTransition = board.currentPlayer().makeMove((move));
+            if (moveTransition.getMoveStatus().isDone()) {
+                final int currentValue = max(blackMove, whiteMove,moveTransition.getTransitionBoard(), depth - 1,alpha,beta);
+                if (currentValue <= lowestSeenValue) {
+                    lowestSeenValue = currentValue;
+                }
+                if (beta >= lowestSeenValue) {
+                    beta=lowestSeenValue;
+                }
+                if (alpha >= beta) {
+                    break;
+                }
+            }
+        }
+        return lowestSeenValue;
+    }
+
+    public int max(final Move blackMove, final Move whiteMove,final Board board, final int depth, int alpha, int beta) {
+        if (depth == 0 || isEndGameScenario(board)) {
+            return this.boardEvaluator.evaluate(blackMove, whiteMove,board, depth);
+        }
+        int highestSeenValue = Integer.MIN_VALUE;
+        for (final Move move : board.currentPlayer().getLegalMoves()) {
+            final MoveTransition moveTransition = board.currentPlayer().makeMove((move));
+            if (moveTransition.getMoveStatus().isDone()) {
+                final int currentValue = min(blackMove, move, moveTransition.getTransitionBoard(), depth - 1, alpha,beta);
+                if (currentValue >= highestSeenValue) {
+                    highestSeenValue = currentValue;
+                }
+                if (alpha <= highestSeenValue) {
+                    alpha = highestSeenValue;
+                }
+                if (alpha >= beta) {
+                    break;
+                }
+            }
+        }
+        return highestSeenValue;
+    }
+
+    private static boolean isEndGameScenario(final Board board){
+        return board.currentPlayer().isInCheckMate();
+    }
 }

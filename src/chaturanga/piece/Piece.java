@@ -13,7 +13,7 @@ public abstract class Piece {
     protected int piecePosition;
     protected final int cachedHashCode;
 
-    public Piece(final int piecePosition, final Alliance pieceAlliance, final PieceType pieceType) {
+    public Piece(final PieceType pieceType, final int piecePosition, final Alliance pieceAlliance) {
         this.piecePosition = piecePosition;
         this.pieceAlliance = pieceAlliance;
         this.cachedHashCode = computeHashCode();

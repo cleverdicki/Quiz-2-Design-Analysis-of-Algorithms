@@ -1,4 +1,4 @@
-package chaturanga;
+package chaturanga.utils;
 
 import chaturanga.player.BlackPlayer;
 import chaturanga.player.Player;
@@ -35,7 +35,7 @@ public enum Alliance {
         public Player choosePlayer(WhitePlayer whitePlayer, BlackPlayer blackPlayer) {
             return blackPlayer;
         }
-    }
+    };
 
     public abstract boolean isWhite();
     public abstract boolean isBlack();

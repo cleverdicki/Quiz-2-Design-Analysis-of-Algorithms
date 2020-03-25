@@ -2,12 +2,13 @@ package chaturanga.player.ai;
 
 import chaturanga.board.Board;
 import chaturanga.board.Move;
+import chaturanga.player.MoveTransition;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Minimax implements MoveStrategy {
+public class MiniMax implements MoveStrategy {
     private final BoardEvaluator boardEvaluator;
     private final int searchDepth;
     public MiniMax(final int searchDepth) {

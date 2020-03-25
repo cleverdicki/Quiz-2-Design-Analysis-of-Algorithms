@@ -1,7 +1,7 @@
 package chaturanga;
 
 import chaturanga.gui.Menu;
-import chaturanga.gui.Table;
+import chaturanga.gui.MainTable;
 import chaturanga.sound.Sound;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -73,7 +73,7 @@ public class Chaturanga extends Application{
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                    Table.get(1).show();
+                    MainTable.get(1).show();
                 }
             });
             a.stop();
@@ -85,7 +85,7 @@ public class Chaturanga extends Application{
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                    Table.get(2).show();
+                    MainTable.get(2).show();
                 }
             });
             a.stop();

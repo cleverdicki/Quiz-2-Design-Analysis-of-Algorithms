@@ -1,6 +1,6 @@
 package chaturanga.piece;
 
-import chaturanga.Alliance;
+import chaturanga.utils.Alliance;
 import chaturanga.board.Board;
 import chaturanga.board.Move;
 

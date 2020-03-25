@@ -1,6 +1,6 @@
 package chaturanga.board;
 
-import chaturanga.Alliance;
+import chaturanga.utils.Alliance;
 import chaturanga.piece.Pawn;
 import chaturanga.piece.Piece;
 import chaturanga.player.BlackPlayer;

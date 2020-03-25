@@ -6,20 +6,21 @@ import chaturanga.board.Move;
 import chaturanga.piece.Piece;
 import chaturanga.player.Player;
 
+import java.util.List;
 import java.util.PriorityQueue;
 
-public class StandardBoardEvaluator implements BoardEvaluator{
+public final class StandardBoardEvaluator implements BoardEvaluator {
     private static final int CHECK_MATE_BONUS = 1000;
     private static final int CHECK_MATE_POSITION = -100;
     private static final int BOUNDS_POSITION = -100;
 
-
     @Override
-    public int evaluate(Move blackMove, Move whiteMove, Board board, int depth) {
+    public int evaluate(final Move blackMove, final Move whiteMove, final Board board, final int depth) {
+
         return scorePlayer(whiteMove, board, board.whitePlayer(), depth) - scorePlayer(blackMove, board, board.blackPlayer(), depth);
     }
 
-    private int scorePlayer(final Move move, final Board board, final Player player, final int depth) {
+    private int scorePlayer(final Move move,final Board board, final Player player, final int depth) {
         return rowScore(move)+checkMate(player)+checkPosition(move)+boundsPosition(player,move);
     }
 
@@ -51,5 +52,4 @@ public class StandardBoardEvaluator implements BoardEvaluator{
         }
         else return 0;
     }
-
 }

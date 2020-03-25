@@ -8,12 +8,12 @@ import chaturanga.piece.Piece;
 import java.util.Collection;
 
 public class BlackPlayer extends Player {
-    public BlackPlayer(final Board board, final Collection<Move> whiteStandardLegalMoves, final Collection<Move> blackStandardLegalMoves){
+    public BlackPlayer(final Board board, final Collection<Move> whiteStandardLegalMoves, final Collection<Move> blackStandardLegalMoves) {
         super(board, blackStandardLegalMoves, whiteStandardLegalMoves);
     }
 
     @Override
-    public Collection<Piece> getActivePiece() {
+    public Collection<Piece> getActivePieces() {
         return this.board.getBlackPieces();
     }
 
@@ -26,6 +26,4 @@ public class BlackPlayer extends Player {
     public Player getOpponent() {
         return this.board.whitePlayer();
     }
-
-
 }

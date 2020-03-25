@@ -14,13 +14,13 @@ import java.util.*;
 public class Board {
 
     public static boolean isFirstMove;
-    private final List<Tile> gameBoard;
+    private final List<Tile> gameBoard;//you cant really have an immutable array in Java but you can have an immutable list
     private final Collection<Piece> whitePieces;
     private final Collection<Piece> blackPieces;
 
     private final WhitePlayer whitePlayer;
     private final BlackPlayer blackPlayer;
-    private final Player currentPlayer;
+    private Player currentPlayer;
 
     public Board(final Builder builder) {
         this.gameBoard = createGameBoard(builder);
@@ -32,6 +32,7 @@ public class Board {
 
         this.whitePlayer = new WhitePlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
         this.blackPlayer = new BlackPlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
+
         //hasil dari next move maker berupa Alliance.WHITE/BLACK nantinya di class Alliance1 direturn
         this.currentPlayer = builder.nextMoveMaker.choosePlayer(this.whitePlayer, this.blackPlayer);
     }
@@ -59,7 +60,6 @@ public class Board {
     public Collection<Piece> getWhitePieces() {
         return this.whitePieces;
     }
-
     public Collection<Move> calculateLegalMoves(final Collection<Piece> pieces) {
         //menghitung gerakan yang boleh dilakukan suatu pion dan ditambah semua
         final List<Move> legalMoves = new ArrayList<>();

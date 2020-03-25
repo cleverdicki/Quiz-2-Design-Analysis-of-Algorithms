@@ -5,8 +5,17 @@ import chaturanga.board.Move;
 import chaturanga.player.MoveTransition;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Random;
+
+/*
+heuristic :
+        semakin panjang jaraknya,
+        kalau kasus(a ke d sama jaraknya b ke c) berarti pilih yang tertinggal
+        nah sekaligus ngecek juga apakah udah tertinggal jauh, batas ketinggalan 4 baris
+        nah dia juga harus gerak ke ujung sisinya
+*/
 
 public class MiniMax implements MoveStrategy {
     private final BoardEvaluator boardEvaluator;
@@ -14,6 +23,11 @@ public class MiniMax implements MoveStrategy {
     public MiniMax(final int searchDepth) {
         this.boardEvaluator = new StandardBoardEvaluator();
         this.searchDepth = searchDepth;
+    }
+
+    @Override
+    public String toString() {
+        return "MiniMax";
     }
 
     @Override

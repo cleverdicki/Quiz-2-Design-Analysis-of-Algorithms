@@ -20,7 +20,7 @@ public class StandardBoardEvaluator implements BoardEvaluator{
     }
 
     private int scorePlayer(final Move move, final Board board, final Player player, final int depth) {
-        return rowScore(move)+checkMate(player)+checkPosition(move)/*+*//*boundsPosition(player,move)*/;
+        return rowScore(move)+checkMate(player)+checkPosition(move)+boundsPosition(player,move);
     }
 
     private int boundsPosition(Player player, Move move) {

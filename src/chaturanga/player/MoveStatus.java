@@ -11,7 +11,7 @@ public enum MoveStatus {
             return  false;
         }
     },
-    IlLEGAL_MOVE {
+    ILLEGAL_MOVE {
         @Override
         public boolean isDone(){
             return  false;

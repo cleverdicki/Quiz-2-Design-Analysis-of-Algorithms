@@ -25,6 +25,7 @@ public class MainTable {
         this.menu = new Menu(option,this.table.getGameFrame());
         table.addObserver(new TableGameAIWatcher());
         table.getGameFrame().setVisible(true);
+        Sound.main_game_back_sound.loop();
     }
 
     public void show() {
@@ -46,7 +47,6 @@ public class MainTable {
                 Sound.main_game_back_sound.stop();
 //                Sound.playSound("/win.wav");
                 Sound.win.play();
-                String win;
                 if (table.getGameBoard().currentPlayer().getOpponent().getAlliance().isBlack()) {
                     menu.show(AI_WIN);
                 } else menu.show(AI_LOSE);

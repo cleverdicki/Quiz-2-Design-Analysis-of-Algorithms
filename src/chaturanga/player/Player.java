@@ -7,12 +7,11 @@ import chaturanga.board.Move;
 import chaturanga.piece.Piece;
 
 import java.util.Collection;
-import java.util.Collections;
 
 public abstract class Player {
     protected final Board board;
     private final boolean isInCheck;
-    protected final Collections<Move> legalMoves;
+    protected final Collection<Move> legalMoves;
 
     public Player(final Board board, final Collection<Move> legalMoves, final Collection<Move> opponentMoves){
         this.board=board;
@@ -57,7 +56,7 @@ public abstract class Player {
     }
 
 
-    public abstract Collection<Piece> getActivePiece();
+    public abstract Collection<Piece> getActivePieces();
     public abstract Alliance getAlliance();
     public abstract Player getOpponent();
     public  Collection<Move> getLegalMoves(){

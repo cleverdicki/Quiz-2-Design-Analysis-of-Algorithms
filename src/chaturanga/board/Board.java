@@ -52,9 +52,14 @@ public class Board {
         return this.currentPlayer;
     }
 
+    public void setPlayer(final Player player) {
+        this.currentPlayer = player;
+    }
+
     public Collection<Piece> getWhitePieces() {
         return this.whitePieces;
     }
+
     public Collection<Move> calculateLegalMoves(final Collection<Piece> pieces) {
         //menghitung gerakan yang boleh dilakukan suatu pion dan ditambah semua
         final List<Move> legalMoves = new ArrayList<>();

@@ -40,14 +40,6 @@ public abstract class Piece {
                 pieceAlliance == otherPiece.getPieceAlliance();
     }
 
-    @Override
-    public int hashCode() {
-        int result = pieceType.hashCode();
-        result = 31 * result + pieceAlliance.hashCode();
-        result = 31 * result + piecePosition;
-        return result;
-    }
-
     public int getPiecePosition() {
         return this.piecePosition;
     }

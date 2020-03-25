@@ -53,13 +53,7 @@ public class Chaturanga extends Application{
             System.out.println("Couldn't load image");
         }
 
-        MediaPlayer a =new MediaPlayer(new Media(new File("src/art/menu-back-sound.wav").toURI().toString()));
-        a.setOnEndOfMedia(new Runnable() {
-            public void run() {
-                a.seek(Duration.ZERO);
-            }
-        });
-        a.play();
+        Sound.menu_back_sound.loop();
 
         Title title = new Title("C H A T U R A N G A");
         title.setTranslateX(75);
@@ -73,10 +67,11 @@ public class Chaturanga extends Application{
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                    MainTable.get(1).show();
+                    MainTable mainTable = new MainTable(1);
+                    mainTable.show();
                 }
             });
-            a.stop();
+            Sound.menu_back_sound.stop();
             primaryStage.hide();
         });
 
@@ -85,10 +80,11 @@ public class Chaturanga extends Application{
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                    MainTable.get(2).show();
+                    MainTable mainTable = new MainTable(2);
+                    mainTable.show();
                 }
             });
-            a.stop();
+            Sound.menu_back_sound.stop();
             primaryStage.hide();
         });
 
@@ -159,7 +155,7 @@ public class Chaturanga extends Application{
             getChildren().addAll(bg, text);
 
             setOnMouseEntered(event -> {
-                Sound.playSound("src/art/hover.wav");
+                Sound.hover.play();
                 bg.setFill(gradient);
                 text.setFill(Color.WHITE);
             });
@@ -171,7 +167,7 @@ public class Chaturanga extends Application{
             });
 
             setOnMousePressed(event -> {
-                Sound.playSound("src/art/clickmenu.wav");
+                Sound.click.play();
                 bg.setFill(Color.DARKVIOLET);
             });
 

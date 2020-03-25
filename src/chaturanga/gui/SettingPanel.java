@@ -57,7 +57,7 @@ public class SettingPanel{
     public class BoardPanel extends JPanel {
         final List<TilePanel> boardTiles;
         public BoardPanel() {
-            super(new GridLayout(8, 8));
+            super(new GridLayout(8, 4));
             this.boardTiles = new ArrayList<>();
             for (int i = 0; i < BoardUtils.NUM_TILES; i++) {
                 final TilePanel tilePanel = new TilePanel(this, i);

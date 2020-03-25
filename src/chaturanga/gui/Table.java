@@ -55,9 +55,6 @@ public class Table extends Observable {
     public JFrame getGameFrame() {
         return gameFrame;
     }
-    public static void setCode(final int code) {
-        Table.code =code;
-    }
 
     public Board getGameBoard() {
         return this.chessBoard;

@@ -38,6 +38,7 @@ public class Chaturanga extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception {
         Platform.setImplicitExit(false);
+        primaryStage.setResizable(false);
         Pane root = new Pane();
         root.setPrefSize(860,  700);
 

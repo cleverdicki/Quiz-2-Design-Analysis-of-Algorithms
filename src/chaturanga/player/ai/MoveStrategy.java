@@ -6,4 +6,3 @@ import chaturanga.board.Move;
 public interface MoveStrategy {
     Move execute(Board board);
 }
-

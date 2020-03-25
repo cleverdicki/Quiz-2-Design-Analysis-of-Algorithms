@@ -9,18 +9,26 @@ import java.util.Map;
 
 public abstract class Piece {
     protected final PieceType pieceType;
-    protected final Alliance pieceAlliance;
     protected int piecePosition;
+    protected final Alliance pieceAlliance;
     protected final int cachedHashCode;
 
-    public Piece(final PieceType pieceType, final int piecePosition, final Alliance pieceAlliance) {
+    Piece(final PieceType pieceType, final int piecePosition, final Alliance pieceAlliance) {
         this.piecePosition = piecePosition;
         this.pieceAlliance = pieceAlliance;
-        this.cachedHashCode = computeHashCode();
         this.pieceType = pieceType;
+        this.cachedHashCode = computeHashCode();
     }
 
     private int computeHashCode() {
+        int result = pieceType.hashCode();
+        result = 31 * result + pieceAlliance.hashCode();
+        result = 31 * result + piecePosition;
+        return result;
+    }
+
+    @Override
+    public int hashCode() {
         int result = pieceType.hashCode();
         result = 31 * result + pieceAlliance.hashCode();
         result = 31 * result + piecePosition;
@@ -60,11 +68,11 @@ public abstract class Piece {
         return this.pieceType.getPieceValue();
     }
 
-    public abstract Collection<Move> calculateLegalMoves(Board board);
+    public abstract Collection<Move> calculateLegalMoves (final Board board);
 
-    public abstract Collection<Move> calculateLegalJumpedMoves(Board board, int oldPiecePosition, Map<Integer, Boolean> isVisited);
+    public abstract Collection<Move> calculateLegalJumpedMoves(final Board board, final int oldPiecePosition, Map<Integer,Boolean> isVisited);
 
-    public abstract Piece movePiece(Move move);
+    public abstract Piece movePiece(Move move);//return a new piece that will update to move to its destination
 
     public enum PieceType {
         PAWN(1,"P" );

@@ -57,12 +57,6 @@ public abstract class Move {
         }
     }
 
-    public static final class PawnMove extends Move {
-        public PawnMove(final Board board, final Piece movePiece, final int destinationCoordinate){
-            super(board, movePiece, destinationCoordinate);
-        }
-    }
-
     public static final class NullMove extends Move {
         public NullMove(){
             super(null, null,  -1);
@@ -82,7 +76,7 @@ public abstract class Move {
         public static Move createMove(final Board board, final int currentCoordinate, final int destinationCoordinate){
             for (final Move move : board.getAllLegalMoves()){
                 if (move.getCurrentCoordinate() == currentCoordinate &&
-                    move.getDestinationCoordinate() == destinationCoordinate){
+                        move.getDestinationCoordinate() == destinationCoordinate){
                     return move;
                 }
             }
